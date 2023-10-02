@@ -1,3 +1,4 @@
+using QuizOne.User;
 namespace QuizOne.Models
 {
     public class QuizResult
@@ -7,8 +8,8 @@ namespace QuizOne.Models
         public int UserId { get; set; }
         public int Score { get; set; }
         public DateTime CompletionDate { get; set; }
-        
-
         public Quiz Quiz { get; set; }
+        public ApplicationUser User;
+
     }
 }
