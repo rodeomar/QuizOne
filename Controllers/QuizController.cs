@@ -12,10 +12,10 @@ namespace QuizOne.Controllers
             _context = context;
         }
 
-        // public IActionResult Index()
-        // {
-        //     var quizzes = _context.Quizzes.ToList();
-        //     return View(quizzes);
-        // }
+        public IActionResult Index()
+        {
+            var quizzes = _context.Quizzes.ToList();
+            return View(quizzes);
+        }
     }
 }

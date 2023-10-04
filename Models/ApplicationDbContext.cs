@@ -11,6 +11,8 @@ namespace QuizOne.Db
         public DbSet<Question> Questions { get; set; }
         public DbSet<Answer> Answers { get; set; }
         public DbSet<QuizResult> QuizResults { get; set; }
+        public DbSet<QuizCategory> QuizCategory { get; set; }
+        public DbSet<Category> Categories { get; set; } 
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
@@ -20,6 +22,7 @@ namespace QuizOne.Db
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+            
             modelBuilder.Entity<QuizResult>()
                 .HasKey(qr => qr.Id);
 
@@ -33,7 +36,6 @@ namespace QuizOne.Db
                 .WithMany()
                 .HasForeignKey(qr => qr.QuizId);
 
-            // Configure the many-to-many relationship
             modelBuilder.Entity<QuizCategory>()
                 .HasKey(qc => new { qc.QuizId, qc.CategoryId });
 
@@ -46,6 +48,7 @@ namespace QuizOne.Db
                 .HasOne(qc => qc.Category)
                 .WithMany()
                 .HasForeignKey(qc => qc.CategoryId);
+
         }
     }
 }
