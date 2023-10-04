@@ -1,0 +1,26 @@
+@model List<QuizOne.Models.Quiz>
+
+@{
+    ViewData["Title"] = "Quiz List";
+}
+
+<div class="container mt-5">
+    <h1 class="text-center">Quiz List</h1>
+    <hr />
+
+    <div class="row">
+        @foreach (var quiz in Model)
+        {
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">@quiz.Title</h5>
+                        <p class="card-text">@quiz.Description</p>
+                        <p class="card-text">Created on: @quiz.CreationDate.ToShortDateString()</p>
+                        <a href="#" class="btn btn-primary">Start Quiz</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
