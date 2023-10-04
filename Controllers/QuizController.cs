@@ -8,14 +8,13 @@ namespace QuizOne.Controllers
         private readonly ApplicationDbContext _context;
 
         public QuizController(ApplicationDbContext context)
-        {
+        {   
             _context = context;
         }
 
         public IActionResult Index()
         {
-            var quizzes = _context.Quizzes.ToList();
-            return View(quizzes);
+            return View(_context);
         }
     }
 }

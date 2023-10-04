@@ -1,4 +1,4 @@
-@model List<QuizOne.Models.Quiz>
+@model QuizOne.Db.ApplicationDbContext;
 
 @{
     ViewData["Title"] = "Quiz List";
@@ -9,7 +9,7 @@
     <hr />
 
     <div class="row">
-        @foreach (var quiz in Model)
+        @foreach (var quiz in Model.Quizzes.ToList())
         {
             <div class="col-md-4 mb-4">
                 <div class="card">
