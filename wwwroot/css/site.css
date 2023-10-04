@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Bungee+Spice&display=swap');
 body{
   margin: 0;
   overflow-x: hidden;
@@ -44,4 +45,34 @@ body {
   flex-direction: column;
   justify-content: center;
   height: 100vh; 
+}
+
+.mainTextHeading{
+  font-weight: 800;
+  font-family: "Bungee Spice";
+}
+
+.lead{
+  font-size: 25px;
+  font-weight: 400;
+  color: black;
+}
+
+.customCard {
+  display: flex;
+  margin: 0 5% 2% 10%;
+  padding: 20px;
+
+
+}
+
+.customCard img {
+  max-width: 100%;
+  height: auto;
+  margin-right: 20px;
+}
+
+.customCard .text {
+  flex: 1;
+  padding-top: 20px;
 }
