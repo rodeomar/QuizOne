@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using QuizOne.User;
 using QuizOne.Models;
 
-namespace QuizOne.Db 
+namespace QuizOne.Db
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
@@ -32,7 +32,6 @@ namespace QuizOne.Db
                 .HasOne(qr => qr.Quiz)
                 .WithMany()
                 .HasForeignKey(qr => qr.QuizId);
-            
         }
     }
 }
