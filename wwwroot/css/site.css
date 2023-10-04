@@ -1,5 +1,10 @@
+body{
+  margin: 0;
+  overflow-x: hidden;
+}
 html {
   font-size: 14px;
+  margin: 0;
 }
 
 @media (min-width: 768px) {
@@ -26,10 +31,17 @@ body {
 }
 
 .background-image {
-  background-image: url('/images/homeBanner.jpg');
+  background-image: url('/Images/HomePage.jpg');
   background-size: cover;
   background-position: center;
   color: #fff;
   padding: 120px;
   color: #d736ff;
+  min-height: 100vh;
+}
+.flex-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100vh; 
 }
