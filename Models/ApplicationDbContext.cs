@@ -32,6 +32,20 @@ namespace QuizOne.Db
                 .HasOne(qr => qr.Quiz)
                 .WithMany()
                 .HasForeignKey(qr => qr.QuizId);
+
+            // Configure the many-to-many relationship
+            modelBuilder.Entity<QuizCategory>()
+                .HasKey(qc => new { qc.QuizId, qc.CategoryId });
+
+            modelBuilder.Entity<QuizCategory>()
+                .HasOne(qc => qc.Quiz)
+                .WithMany(q => q.QuizCategories)
+                .HasForeignKey(qc => qc.QuizId);
+
+            modelBuilder.Entity<QuizCategory>()
+                .HasOne(qc => qc.Category)
+                .WithMany()
+                .HasForeignKey(qc => qc.CategoryId);
         }
     }
 }

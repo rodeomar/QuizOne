@@ -9,5 +9,7 @@ namespace QuizOne.Models
         public DateTime CreationDate { get; set; }
         public List<Question> Questions { get; set; }
         public List<Category> Categories { get; set; }
+        public List<QuizCategory> QuizCategories { get; set; }
+
     }
 }
