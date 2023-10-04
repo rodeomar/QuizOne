@@ -1,5 +1,7 @@
 @model QuizOne.Db.ApplicationDbContext;
-
+@{
+    List<QuizOne.Models.Category> Category = Model.Categories.ToList();
+}
 @{
     ViewData["Title"] = "Quiz List";
 }
@@ -17,7 +19,23 @@
                         <h5 class="card-title">@quiz.Title</h5>
                         <p class="card-text">@quiz.Description</p>
                         <p class="card-text">Created on: @quiz.CreationDate.ToShortDateString()</p>
-                        <a href="#" class="btn btn-primary">Start Quiz</a>
+                        <a href="#" class="btn btn-primary my-2">Start Quiz</a>
+                        <div class="card-footer">
+                            <code style="color: black; font-weight: bold;">Tag(s):</code>
+                            @foreach (var m in @Model.QuizCategory)
+                            {
+                                @if (m.QuizId == quiz.Id)
+                                {
+                                    var category = Category.Find(catogry => catogry.Id == m.CategoryId);
+                                    if (category != null)
+                                    {
+                                        <a href="https://google.com" style="text-decoration: none;">
+                                            @category.Name;
+                                        </a>
+                                    }
+                                }
+                            }
+                        </div>
                     </div>
                 </div>
             </div>
