@@ -49,11 +49,12 @@ body {
 
 .mainTextHeading{
   font-weight: 800;
+  font-size: 80px;
   font-family: "Bungee Spice";
 }
 
 .lead{
-  font-size: 25px;
+  font-size: 30px;
   font-weight: 400;
   color: black;
 }
@@ -74,5 +75,19 @@ body {
 
 .customCard .text {
   flex: 1;
-  padding-top: 20px;
+  padding-top: 80px;
+}
+
+.big-blue-button {
+  background-color: #258cfb; 
+  color: #fff; 
+  padding: 10px 20px;
+  font-size: 24px; 
+  border: none; 
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.big-blue-button:hover {
+  background-color: #1568c1; 
 }
