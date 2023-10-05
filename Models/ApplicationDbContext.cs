@@ -87,7 +87,7 @@ namespace QuizOne.Db
                 new Answer { Id = 2, Text = "2", IsCorrect = false, QuestionId = 1 },
                 new Answer { Id = 3, Text = "5", IsCorrect = false, QuestionId = 1 },
                 new Answer { Id = 4, Text = "3", IsCorrect = false, QuestionId = 1 },
-                new Answer { Id = 5, Text = "The \"using\" statement is used for including namespaces in your code.", IsCorrect = false, QuestionId = 2 },
+                new Answer { Id = 5, Text = "The \"using\" statement is used for including namespaces in your code.", IsCorrect = true, QuestionId = 2 },
                 new Answer { Id = 6, Text = "The \"using\" statement is used for exception handling in C#.", IsCorrect = false, QuestionId = 2 },
                 new Answer { Id = 7, Text = "The \"using\" statement is used for loop control in C#.", IsCorrect = false, QuestionId = 2 },
                 new Answer { Id = 8, Text = "A variable in C# is a named storage location in memory.", IsCorrect = true, QuestionId = 3 },
