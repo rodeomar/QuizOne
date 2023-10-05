@@ -73,11 +73,12 @@ body {
 
 }
 
-.even{
+.even {
   border: 2px solid beige;
   transform: translateX(-100px);
 }
-.odd{
+
+.odd {
   transform: translateX(100px);
 
 }
@@ -107,4 +108,8 @@ body {
 .big-button:hover {
   color: white;
   background-color: #1568c1;
+}
+
+.redBoxShadow {
+  box-shadow: 0 0 10px 2px #FF3131;
 }

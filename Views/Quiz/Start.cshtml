@@ -1,0 +1,59 @@
+@model QuizOne.Models.StartViewModel;
+
+@{
+    ViewData["Title"] = "Start Quiz";
+}
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-3 col-sm-12">
+            <h4>Questions:</h4>
+            <div class="row">
+                @foreach (var question in Model.Questions)
+                {
+                    if (Model.Answers.Any(a => a.QuestionId == question.Id))
+                    {
+                        <div class="col-md-4 col-sm-6 mb-2">
+                            <div class="card redBoxShadow" id="question_@question.Id">
+                                <div class="card-body">
+                                    <h6 class="card-title">Q.@question.Id</h6>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+        <div class="col-md-9">
+            <h1 class="text-center">Quiz: @Model.Quiz.Title</h1>
+            <hr />
+
+            <form asp-action="SubmitQuiz" method="post">
+                @foreach (var question in Model.Questions)
+                {
+                    if (Model.Answers.Any(a => a.QuestionId == question.Id))
+                    {
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <h5 class="card-title">Question @question.Id: @question.Text</h5>
+                                <div class="form-check">
+                                    @foreach (var answer in Model.Answers.Where(a => a.QuestionId == question.Id))
+                                    {
+                                        <input type="radio" class="form-check-input" name="Question_@question.Id"
+                                            id="Question_@answer.Id" value="@answer.Id"  />
+                                        <label for="Question_@answer.Id" class="form-check-label">@answer.Text</label>
+
+                                        <br />
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+

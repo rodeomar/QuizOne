@@ -20,15 +20,15 @@ namespace QuizOne.Controllers
 
         public IActionResult Start(int QuizId)
         {
-            List<Question> questions = _context.Questions.Include(q => q.QuizId == QuizId).ToList();
+            List<Question> questions = _context.Questions.Where(question => question.QuizId == QuizId).ToList();
             List<int> questionIds = questions.Select(q => q.Id).ToList();
             List<Answer> answers = _context.Answers
                 .Where(a => questionIds.Contains(a.QuestionId))
                 .ToList();
-            Quiz? quiz = _context.Quizzes.Find(QuizId);
+            Quiz? quiz = _context.Quizzes.ToList().Find(qui => qui.Id == QuizId);
 
 
-            return View(new { Question = questions, Answer = answers, Quiz = quiz});
+            return View(new StartViewModel(){ Questions = questions, Answers = answers, Quiz = quiz });
         }
 
     }
