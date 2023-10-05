@@ -28,8 +28,41 @@ namespace QuizOne.Controllers
             Quiz? quiz = _context.Quizzes.ToList().Find(qui => qui.Id == QuizId);
 
 
-            return View(new StartViewModel(){ Questions = questions, Answers = answers, Quiz = quiz });
+            return View(new StartViewModel() { Questions = questions, Answers = answers, Quiz = quiz });
         }
 
+
+       [HttpPost] 
+        public IActionResult SubmitQuiz(Dictionary<int, int> selectedAnswers)
+        {
+            int score = 0;
+
+            foreach (var kvp in selectedAnswers)
+            {
+                int questionId = kvp.Key;
+                int selectedAnswerId = kvp.Value;
+
+                int correctAnswerId = _context.Answers
+                    .Where(a => a.QuestionId == questionId && a.IsCorrect)
+                    .Select(a => a.Id)
+                    .FirstOrDefault();
+
+                if (selectedAnswerId == correctAnswerId)
+                {
+                    score++;
+                }
+            }
+            
+            ViewBag.Score = score;
+
+            return View("QuizResult"); 
+        }
+
+
+        public IActionResult QuizResult(){
+
+
+            return RedirectToAction("Index","Quiz");
+        }
     }
 }

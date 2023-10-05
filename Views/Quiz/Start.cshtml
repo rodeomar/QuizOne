@@ -39,10 +39,9 @@
                                 <div class="form-check">
                                     @foreach (var answer in Model.Answers.Where(a => a.QuestionId == question.Id))
                                     {
-                                        <input type="radio" class="form-check-input" name="Question_@question.Id"
+                                        <input type="radio" class="form-check-input" name="selectedAnswers[@question.Id]" 
                                             id="Question_@answer.Id" value="@answer.Id" onclick="isAnswered(@question.Id)" />
                                         <label for="Question_@answer.Id" class="form-check-label">@answer.Text</label>
-
                                         <br />
                                     }
                                 </div>
@@ -57,7 +56,6 @@
     </div>
 </div>
 
-
 <script>
     function isAnswered(id) {
         let abc = document.getElementById(`question_${id}`);
@@ -66,7 +64,6 @@
 
     window.addEventListener("beforeunload", function (e) {
         var confirmationMessage = "Are you sure you want to leave this page? Your progress may be lost.";
-
 
         (e || window.event).returnValue = confirmationMessage;
 
