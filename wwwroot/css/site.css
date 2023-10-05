@@ -1,8 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Bungee+Spice&display=swap');
-body{
+
+body {
   margin: 0;
   overflow-x: hidden;
 }
+
 html {
   font-size: 14px;
   margin: 0;
@@ -40,20 +42,21 @@ body {
   color: #d736ff;
   min-height: 100vh;
 }
+
 .flex-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  height: 100vh; 
+  height: 100vh;
 }
 
-.mainTextHeading{
+.mainTextHeading {
   font-weight: 800;
   font-size: 80px;
   font-family: "Bungee Spice";
 }
 
-.lead{
+.lead {
   font-size: 30px;
   font-weight: 400;
   color: black;
@@ -64,6 +67,18 @@ body {
   margin: 0 5% 2% 10%;
   padding: 20px;
 
+
+  transition: opacity 1s ease, transform 1s ease;
+
+
+}
+
+.even{
+  border: 2px solid beige;
+  transform: translateX(-100px);
+}
+.odd{
+  transform: translateX(100px);
 
 }
 
@@ -80,16 +95,16 @@ body {
 
 .big-button {
   text-decoration: none;
-  background-color: #258cfb; 
-  color: white; 
+  background-color: #258cfb;
+  color: white;
   padding: 10px 20px;
-  font-size: 20px; 
-  border: none; 
+  font-size: 20px;
+  border: none;
   border-radius: 8px;
   cursor: pointer;
 }
 
 .big-button:hover {
   color: white;
-  background-color: #1568c1; 
+  background-color: #1568c1;
 }
