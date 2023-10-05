@@ -19,7 +19,7 @@
                         <h5 class="card-title">@quiz.Title</h5>
                         <p class="card-text">@quiz.Description</p>
                         <p class="card-text">Created on: @quiz.CreationDate.ToShortDateString()</p>
-                        <a href="#" class="btn btn-primary my-2">Start Quiz</a>
+                        <a href="#" class="btn btn-primary my-2" data-bs-toggle="modal" data-bs-target="#modal_@quiz.Id">Start Quiz</a>
                         <div class="card-footer">
                             <code style="color: black; font-weight: bold;">Tag(s):</code>
                             @foreach (var m in @Model.QuizCategory)
@@ -35,6 +35,23 @@
                                     }
                                 }
                             }
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="modal_@quiz.Id" tabindex="-1" aria-labelledby="popupModal" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="popupModal">Confirmation</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            Are you sure you want to start <b>@quiz.Title?</b>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                            <a href="URL_TO_QUIZ_START_PAGE" class="btn btn-primary">Start Quiz</a>
                         </div>
                     </div>
                 </div>
