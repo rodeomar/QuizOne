@@ -7,8 +7,12 @@
         <h1 class="display-4 text-black mainTextHeading">Welcome to QuizOne</h1>
         <p class="lead">The Ultimate Quiz Platform to Test and Challenge Your Knowledge</p>
         <div>
-            <a class="btn btn-primary btn-lg" asp-controller="Account" asp-action="Register">Sign Up</a>
-            <a class="btn btn-success btn-lg" asp-controller="Account" asp-action="Login">Log In</a>
+
+            @if (!User.Identity.IsAuthenticated)
+            {
+                <a class="btn btn-primary btn-lg" asp-controller="Account" asp-action="Register">Sign Up</a>
+                <a class="btn btn-success btn-lg" asp-controller="Account" asp-action="Login">Log In</a>
+            }
         </div>
     </div>
 

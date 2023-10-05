@@ -1,13 +1,14 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using QuizOne.Db;
-
+using QuizOne.User;
 namespace QuizOne
 {
     class Program
     {
         static void Main(string[] args)
         {
-            WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
+            var builder = WebApplication.CreateBuilder(args);
 
             builder.Services.AddControllersWithViews();
 
@@ -18,7 +19,12 @@ namespace QuizOne
                         ServerVersion.AutoDetect(builder.Configuration["ConnectionStrings:DefaultConnection"])
                     )
             );
+            builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
+        .AddEntityFrameworkStores<ApplicationDbContext>()
+        .AddDefaultTokenProviders();
             WebApplication app = builder.Build();
+
+
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
