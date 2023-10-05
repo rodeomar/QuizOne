@@ -4,16 +4,38 @@
     ViewData["Title"] = "Login";
 }
 
-<h2>@ViewData["Title"]</h2>
-<hr />
-<div class="row">
-    <div class="col-md-4">
+<style>
+    .login-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #f0f0f0;
+        /* Set your desired background color here */
+    }
+
+    .login-form {
+        background-color: #ffffff;
+        /* Set your form background color here */
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+</style>
+
+<div class="login-container">
+    <div class="col-md-4 login-form">
+        <h2>@ViewData["Title"]</h2>
+        <hr />
+
         <form asp-action="Login" method="post">
+            <!-- Email input -->
             <div class="form-outline mb-4">
                 <input asp-for="Email" id="form2Example1" class="form-control" />
                 <label class="form-label" for="form2Example1">Email address</label>
             </div>
 
+            <!-- Password input -->
             <div class="form-outline mb-4">
                 <input asp-for="Password" type="password" id="form2Example2" class="form-control" />
                 <label class="form-label" for="form2Example2">Password</label>
@@ -28,30 +50,16 @@
                 </div>
 
                 <div class="col">
-                    <a href="#!">Forgot password?</a>
+                    <a onclick="alert('This not added Yet! sorry ;)')" style="color: blue; cursor: pointer;">Forgot
+                        password?</a>
                 </div>
             </div>
 
-            <button type="submit" class="btn btn-primary btn-block mb-4">Sign in</button>
 
             <div class="text-center">
+                <button type="submit" class="btn btn-primary btn-block mb-4">Sign in</button>
                 <p>Not a member? <a href="#!">Register</a></p>
                 <p>or sign up with:</p>
-                <button type="button" class="btn btn-link btn-floating mx-1">
-                    <i class="fab fa-facebook-f"></i>
-                </button>
-
-                <button type="button" class="btn btn-link btn-floating mx-1">
-                    <i class="fab fa-google"></i>
-                </button>
-
-                <button type="button" class="btn btn-link btn-floating mx-1">
-                    <i class="fab fa-twitter"></i>
-                </button>
-
-                <button type="button" class="btn btn-link btn-floating mx-1">
-                    <i class="fab fa-github"></i>
-                </button>
             </div>
         </form>
     </div>
