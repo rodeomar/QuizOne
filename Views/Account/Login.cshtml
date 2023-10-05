@@ -11,12 +11,10 @@
         align-items: center;
         height: 100vh;
         background-color: #f0f0f0;
-        /* Set your desired background color here */
     }
 
     .login-form {
         background-color: #ffffff;
-        /* Set your form background color here */
         padding: 20px;
         border-radius: 8px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
@@ -29,28 +27,26 @@
         <hr />
 
         <form asp-action="Login" method="post">
-            <!-- Email input -->
             <div class="form-outline mb-4">
-                <input asp-for="Email" id="form2Example1" class="form-control" />
-                <label class="form-label" for="form2Example1">Email address</label>
+                <input asp-for="Email" id="email" class="form-control" />
+                <label class="form-label" for="email">Email address</label>
             </div>
 
-            <!-- Password input -->
             <div class="form-outline mb-4">
-                <input asp-for="Password" type="password" id="form2Example2" class="form-control" />
-                <label class="form-label" for="form2Example2">Password</label>
+                <input asp-for="Password" type="password" id="password" class="form-control" />
+                <label class="form-label" for="password">Password</label>
             </div>
 
             <div class="row mb-4">
                 <div class="col d-flex justify-content-center">
                     <div class="form-check">
-                        <input asp-for="RememberMe" class="form-check-input" id="form2Example31" checked />
-                        <label class="form-check-label" for="form2Example31"> Remember me </label>
+                        <input asp-for="RememberMe" class="form-check-input" id="rem" checked />
+                        <label class="form-check-label" for="rem"> Remember me </label>
                     </div>
                 </div>
 
                 <div class="col">
-                    <a onclick="alert('This not added Yet! sorry ;)')" style="color: blue; cursor: pointer;">Forgot
+                    <a onclick="alert('This not added Yet! sorry ;) I don\'t know How to send emails! 🥲' )" style="color: blue; cursor: pointer;">Forgot
                         password?</a>
                 </div>
             </div>
@@ -58,7 +54,7 @@
 
             <div class="text-center">
                 <button type="submit" class="btn btn-primary btn-block mb-4">Sign in</button>
-                <p>Not a member? <a href="#!">Register</a></p>
+                <p>Not a member? <a asp-controller="Account" asp-action="Register">Register</a></p>
                 <p>or sign up with:</p>
             </div>
         </form>
