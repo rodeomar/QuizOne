@@ -54,6 +54,7 @@ namespace QuizOne.Controllers
             }
             
             ViewBag.Score = score;
+            ViewBag.TotalQuestions = selectedAnswers.Count();
 
             return View("QuizResult"); 
         }

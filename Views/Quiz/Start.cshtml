@@ -29,6 +29,7 @@
             <hr />
 
             <form asp-action="SubmitQuiz" method="post">
+
                 @foreach (var question in Model.Questions)
                 {
                     if (Model.Answers.Any(a => a.QuestionId == question.Id))
@@ -39,8 +40,9 @@
                                 <div class="form-check">
                                     @foreach (var answer in Model.Answers.Where(a => a.QuestionId == question.Id))
                                     {
-                                        <input type="radio" class="form-check-input" name="selectedAnswers[@question.Id]" 
-                                            id="Question_@answer.Id" value="@answer.Id" onclick="isAnswered(@question.Id)" />
+                                        <input type="radio" class="form-check-input" name="selectedAnswers[@question.Id]"
+                                            id="Question_@answer.Id" value="@answer.Id"
+                                            onclick="isAnswered(@question.Id, @Model.Questions.Count())" />
                                         <label for="Question_@answer.Id" class="form-check-label">@answer.Text</label>
                                         <br />
                                     }
@@ -50,23 +52,48 @@
                     }
                 }
 
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary" disabled id="submitBtn">Submit</button>
             </form>
         </div>
     </div>
 </div>
 
 <script>
-    function isAnswered(id) {
+    function isAnswered(id, qNo) {
         let abc = document.getElementById(`question_${id}`);
         abc.style.boxShadow = "0 0 10px 2px #7CFC00";
+        checkAllQuestionsAnswered(qNo);
+    }
+
+    function checkAllQuestionsAnswered(qNo) {
+        let radioButtons = document.querySelectorAll('input[type="radio"]');
+        let allQuestionsAnswered = true;
+        let count = 0;
+        radioButtons.forEach(function (radio) {
+            if (radio.checked) {
+                count++;
+            }
+        });
+
+        if (count === qNo)
+            document.getElementById("submitBtn").disabled = !allQuestionsAnswered;
+        console.log(count);
+        console.log(qNo);
     }
 
     window.addEventListener("beforeunload", function (e) {
         var confirmationMessage = "Are you sure you want to leave this page? Your progress may be lost.";
 
+        let radioButtons = document.querySelectorAll('input[type="radio"]');
+        radioButtons.forEach(function (radio) {
+            radio.checked = false;
+        }); // Unselecting all radio buttons
+
         (e || window.event).returnValue = confirmationMessage;
 
         return confirmationMessage;
     });
+
+
+
 </script>
