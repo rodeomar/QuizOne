@@ -19,6 +19,56 @@
         border-radius: 8px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     }
+
+    @@keyframes shake {
+        0% {
+            transform: translate(1px, 1px) rotate(0deg);
+        }
+
+        10% {
+            transform: translate(-1px, -2px) rotate(-1deg);
+        }
+
+        20% {
+            transform: translate(-3px, 0px) rotate(1deg);
+        }
+
+        30% {
+            transform: translate(3px, 2px) rotate(0deg);
+        }
+
+        40% {
+            transform: translate(1px, -1px) rotate(1deg);
+        }
+
+        50% {
+            transform: translate(-1px, 2px) rotate(-1deg);
+        }
+
+        60% {
+            transform: translate(-3px, 1px) rotate(0deg);
+        }
+
+        70% {
+            transform: translate(3px, 1px) rotate(-1deg);
+        }
+
+        80% {
+            transform: translate(-1px, -1px) rotate(1deg);
+        }
+
+        90% {
+            transform: translate(1px, 2px) rotate(0deg);
+        }
+
+        100% {
+            transform: translate(1px, -2px) rotate(-1deg);
+        }
+    }
+
+    .shake-animation {
+        animation: shake 0.5s;
+    }
 </style>
 
 <div class="login-container">
@@ -27,6 +77,8 @@
         <hr />
 
         <form asp-action="Login" method="post">
+            <div asp-validation-summary="All" class="text-danger"></div>
+
             <div class="form-outline mb-4">
                 <input asp-for="Email" id="email" class="form-control" />
                 <label class="form-label" for="email">Email address</label>
@@ -45,10 +97,21 @@
                     </div>
                 </div>
 
+
+
+            @if(ViewBag.IsValid){
                 <div class="col">
-                    <a onclick="alert('This not added Yet! sorry ;) I don\'t know How to send emails! 🥲' )" style="color: blue; cursor: pointer;">Forgot
+                    <a onclick="alert('This not added Yet! sorry ;) I don\'t know How to send emails! 🥲' )"
+                        style="color: blue; cursor: pointer;">Forgot
                         password?</a>
                 </div>
+            }else{
+                <div class="col shake-animation">
+                    <a onclick="alert('This not added Yet! sorry ;) I don\'t know How to send emails! 🥲' )"
+                        style="color: blue; cursor: pointer;">Forgot
+                        password?</a>
+                </div>
+            }
             </div>
 
 

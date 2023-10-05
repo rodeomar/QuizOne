@@ -62,6 +62,8 @@ namespace QuizOne.Controllers
         [HttpGet]
         public IActionResult Login()
         {
+            ViewBag.IsValid = true;
+
             return View();
         }
 
@@ -103,12 +105,14 @@ namespace QuizOne.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                    ModelState.AddModelError(string.Empty, "Invalid login attempt. Please check your username and password.");
+                    ViewBag.IsValid = false;
                     return View(model);
                 }
             }
             return View(model);
         }
+
 
 
     }
