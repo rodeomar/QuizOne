@@ -51,7 +51,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                            <a href="URL_TO_QUIZ_START_PAGE" class="btn btn-primary">Start Quiz</a>
+                            <a href="@Url.Action("Start", "Quiz", new { QuizId= quiz.Id })" class="btn btn-primary">Start Quiz</a>
                         </div>
                     </div>
                 </div>
