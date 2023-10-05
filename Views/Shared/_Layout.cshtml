@@ -1,5 +1,6 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,27 +9,47 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/QuizOne.styles.css" asp-append-version="true" />
 </head>
+
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow">
             <div class="container-fluid">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">QuizOne</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Quiz" asp-action="Index">Quizees</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Quiz"
+                                asp-action="Index">Quizees</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="" asp-action="">Leaderboard</a>
                         </li>
                     </ul>
+
+                    <!-- Conditionally render Sign Up, Log In, or Log Out buttons -->
+                    <div class="navbar-nav">
+                        @if (!User.Identity.IsAuthenticated)
+                        {
+                            <a class="nav-link text-dark btn btn-sm btn-secondary" asp-area="" asp-controller="Account" asp-action="Register">Sign
+                                Up</a>
+                            <a class="nav-link text-dark btn btn-sm btn-info mx-2" asp-area="" asp-controller="Account" asp-action="Login">Log In</a>
+                        }
+                        else
+                        {
+                            <form asp-area="" asp-controller="Account" asp-action="Logout" method="post"
+                                class="form-inline">
+                                <button type="submit" class="btn btn-link nav-link text-dark">Log Out</button>
+                            </form>
+                        }
+                    </div>
                 </div>
             </div>
         </nav>
+
     </header>
     <div class="">
         <main role="main" class="">
@@ -46,4 +67,5 @@
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
+
 </html>
