@@ -40,7 +40,7 @@
                                     @foreach (var answer in Model.Answers.Where(a => a.QuestionId == question.Id))
                                     {
                                         <input type="radio" class="form-check-input" name="Question_@question.Id"
-                                            id="Question_@answer.Id" value="@answer.Id"  />
+                                            id="Question_@answer.Id" value="@answer.Id" onclick="isAnswered(@question.Id)" />
                                         <label for="Question_@answer.Id" class="form-check-label">@answer.Text</label>
 
                                         <br />
@@ -56,4 +56,14 @@
         </div>
     </div>
 </div>
+
+
+<script>
+    function isAnswered(id) {
+        let abc = document.getElementById(`question_${id}`);
+        abc.style.boxShadow = "0 0 10px 2px #7CFC00";
+    }
+
+
+</script>
 
