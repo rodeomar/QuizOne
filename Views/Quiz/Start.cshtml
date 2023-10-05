@@ -33,7 +33,7 @@
                 {
                     if (Model.Answers.Any(a => a.QuestionId == question.Id))
                     {
-                        <div class="card mb-3">
+                        <div class="card mb-3 floatCard">
                             <div class="card-body">
                                 <h5 class="card-title">Question @question.Id: @question.Text</h5>
                                 <div class="form-check">
@@ -64,6 +64,12 @@
         abc.style.boxShadow = "0 0 10px 2px #7CFC00";
     }
 
+    window.addEventListener("beforeunload", function (e) {
+        var confirmationMessage = "Are you sure you want to leave this page? Your progress may be lost.";
 
+
+        (e || window.event).returnValue = confirmationMessage;
+
+        return confirmationMessage;
+    });
 </script>
-
