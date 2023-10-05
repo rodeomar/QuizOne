@@ -59,6 +59,10 @@ namespace QuizOne.Controllers
         }
 
 
-        
+        [HttpGet]
+        public IActionResult Login()
+        {
+            return View();
+        }
     }
 }
