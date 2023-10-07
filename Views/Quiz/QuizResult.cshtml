@@ -1,3 +1,5 @@
+@model QuizOne.Models.QuizResultViewModel
+
 @{
     ViewData["Title"] = "Quiz Result";
 }
@@ -7,7 +9,55 @@
     <hr />
 
     <div class="text-center">
-        <h2>Your Score: @ViewBag.Score</h2>
+        <h2>Your Score: @Model.Score</h2>
     </div>
 
+    <h3 class="mt-4">Questions:</h3>
+    @foreach (var question in Model.Questions)
+    {
+        <div class="card mt-3">
+            <div class="card-header">
+                Question @question.Id:
+                @question.Text
+            </div>
+            <div class="card-body">
+                @foreach (var answer in question.Answers)
+                {
+                    <div class="form-check">
+                        @if (question.Id == answer.QuestionId)
+                        {
+
+                            if (@Model.SelectedAnswers.Contains(answer.Id))
+                            {
+                                if (answer.IsCorrect)
+                                {
+                                    <input type="checkbox" class="form-check-input" disabled />
+                                    <p class="text-success">
+                                        ✅@answer.Text
+                                    </p>
+                                }
+                                else
+                                {
+                                    <input type="checkbox" class="form-check-input" disabled />
+                                    <p class="text-danger">
+                                        ❌@answer.Text
+                                    </p>
+                                }
+                            }
+                            else
+                            {
+                                <input type="checkbox" class="form-check-input" disabled />
+                                <p class="">
+                                    @answer.Text
+                                </p>
+                            }
+                        }
+                    </div>
+                }
+            </div>
+            <div class="card-footer text-success">
+                Correct Answer: @Model.CorrectAnswers.Find(c => c.QuestionId == question.Id)?.Text;
+            </div>
+        </div>
+    }
 </div>

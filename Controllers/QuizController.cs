@@ -32,38 +32,51 @@ namespace QuizOne.Controllers
         }
 
 
-       [HttpPost] 
+        [HttpPost]
         public IActionResult SubmitQuiz(Dictionary<int, int> selectedAnswers)
         {
             int score = 0;
-
+            var quizResultViewModel = new QuizResultViewModel
+            {
+                SelectedAnswers = selectedAnswers.Values.ToList(),
+                Questions = new List<Question>(),
+                CorrectAnswers = new List<Answer>(),
+                Score = 0
+            };
             foreach (var kvp in selectedAnswers)
             {
                 int questionId = kvp.Key;
                 int selectedAnswerId = kvp.Value;
 
-                int correctAnswerId = _context.Answers
-                    .Where(a => a.QuestionId == questionId && a.IsCorrect)
+                var question = _context.Questions.Include(q => q.Answers)
+                    .FirstOrDefault(q => q.Id == questionId);
+
+                int correctAnswerId = question.Answers
+                    .Where(a => a.IsCorrect && a.QuestionId == questionId)
                     .Select(a => a.Id)
                     .FirstOrDefault();
+
+                quizResultViewModel.Questions.Add(question);
 
                 if (selectedAnswerId == correctAnswerId)
                 {
                     score++;
                 }
+                    quizResultViewModel.CorrectAnswers.Add(question.Answers.First(a => a.IsCorrect));
             }
-            
-            ViewBag.Score = score;
-            ViewBag.TotalQuestions = selectedAnswers.Count();
 
-            return View("QuizResult"); 
+            quizResultViewModel.Score = score;
+
+            return View("QuizResult", quizResultViewModel);
         }
 
 
-        public IActionResult QuizResult(){
+
+        public IActionResult QuizResult()
+        {
 
 
-            return RedirectToAction("Index","Quiz");
+            return RedirectToAction("Index", "Quiz");
         }
     }
 }
